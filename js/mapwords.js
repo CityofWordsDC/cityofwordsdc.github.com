@@ -8,7 +8,35 @@ angular.module('app', [])
     //var featureLayer = L.mapbox.featureLayer().addTo(map);
     $scope.someData = [{author: 'James'}, {author: 'Joyce'}, {author: 'Ulysses'}];
     $scope.authors = [];
+    
     $scope.updateMap = function() {};
+    
+    $scope.toggle = function(author) {
+        var enabled = {};
+        
+        author.selected = !author.selected;
+        
+        for(var i = 0; i < $scope.authors.length; i++) {
+            if ($scope.authors[i].selected == true) {
+                enabled[$scope.authors[i].name] = true;
+            }
+        }
+        
+        $scope.updateMap(enabled);
+    };
+    
+    $scope.selectAll = function(selecting) {
+        var enabled = {};
+        
+         for(var i = 0; i < $scope.authors.length; i++) {
+            $scope.authors[i].selected = selecting;
+            if(selecting) {
+                enabled[$scope.authors[i].name] = true;
+            }
+        }
+        
+        $scope.updateMap(enabled);
+    };
     
     map.featureLayer.on('ready', function() {
         var authorObj = {}, authors = [];
@@ -18,14 +46,19 @@ angular.module('app', [])
             authorObj[features[i].properties['title']] = true;
         }
         
-        for (var k in authorObj) $scope.authors.push({name: k});
-        $scope.authors.sort();
+        var j = 0;
+        for (var k in authorObj) {
+            $scope.authors.push({name: k, selected: false, id: j});
+            j++;
+        }
         
-        $scope.updateMap = function() {
+        $scope.updateMap = function(enabledList) {
             map.featureLayer.setFilter(function(feature) {
-                return (feature.properties['title'] == $scope.selectedAuthor.name);
+                return (feature.properties['title'] in enabledList);
             });
         };
+        
+        $scope.updateMap({});
         
         $scope.$apply(); 
     });

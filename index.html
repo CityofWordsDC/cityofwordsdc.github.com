@@ -18,7 +18,6 @@
         
         <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
         
-        
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -28,19 +27,43 @@
         <style>
             body { margin:0; padding:0; }
             #map { position:absolute; top:0; bottom:0; width:100%; }
+            .author-box { margin: 5px 0; height: 30px; width: 100%; }
+            .check-box { height: 20px; width: 20px; background-color: white; border-color: #DDDDDD; border-style: solid; cursor: pointer}
+            .check-box:hover { background-color: #00AAFF; }
+            .scroll-box { height: 500px; overflow: scroll; }
+            .text-btn { color: #999999; font-size: 20px; cursor: pointer; }
+            .text-btn:hover { color: #222222; };
         </style>
         
         <div class="container">
             
             <h1 class="text-center">City Of Words</h1>
             <div class="row">
-                <div class="col-md-8 col-md-offset-2" style="height: 500px">
+                <div class="col-md-3 scroll-box">
+                    <div class="row author-box" ng-repeat="author in (authors | orderBy: 'name')">
+                        <div class="col-sm-2">
+                            <div ng-style="{'background-color':(author.selected ? '#EEEEEE' : 'white')}" class="check-box" ng-click="toggle(author)">
+                            </div>
+                        </div> 
+                        <div class="col-sm-10"> {{author.name}} </div>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-8" style="height: 500px">
                     <div id="map"></div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <span class="text-btn" ng-click="selectAll(true)">Show All Quotes</span>
                 </div>
             </div>
             <div class="row">
-                <select ng-options="author.name for author in (authors | orderBy: 'name')" ng-model="selectedAuthor" ng-change="updateMap()">
-                </select>
+                <div class="col-md-3 text-center">
+                    <span class="text-btn" ng-click="selectAll(false)">Reset</span>
+                </div>
             </div>
         </div>
     
