@@ -48,7 +48,7 @@ angular.module('app', [])
         
         var j = 0;
         for (var k in authorObj) {
-            $scope.authors.push({name: k, selected: false, id: j});
+            $scope.authors.push({name: k, selected: true, id: j});
             j++;
         }
         
@@ -58,7 +58,7 @@ angular.module('app', [])
             });
         };
         
-        $scope.updateMap({});
+        $scope.selectAll(true);
         
         $scope.$apply(); 
     });
