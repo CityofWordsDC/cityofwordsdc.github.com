@@ -25,45 +25,106 @@
     </head>
     <body ng-controller="mapController">
         <style>
-            body { margin:0; padding:0; }
-            #map { position:absolute; top:0; bottom:0; width:100%; }
+            body { margin:0; padding:0; font-family: Futura; }
+            #map { position:absolute; top:0; bottom:0; left: -20px; width:100%; }
             .author-box { margin: 5px 0; height: 30px; width: 100%; }
             .check-box { height: 20px; width: 20px; background-color: white; border-color: #DDDDDD; border-style: solid; cursor: pointer}
-            .check-box:hover { background-color: #00AAFF; }
-            .scroll-box { height: 500px; overflow: scroll; }
-            .text-btn { color: #999999; font-size: 20px; cursor: pointer; }
-            .text-btn:hover { color: #222222; };
+            .check-box:hover { background-color: #44CCFF; }
+            .scroll-box { height: 540px; overflow: scroll; }
+            .text-btn { color: #999999; font-size: 20px; cursor: pointer;}
+            .text-btn:hover { color: #222222; }
+            .social-btn { height: 50px; width: auto; padding-left: 10px; padding-bottom: 10px;}
+            .social-btn:hover { }
         </style>
         
         <div class="container">
             
-            <h1 class="text-center">City Of Words</h1>
+            <div class="row" style="padding-top: 10px; padding-bottom: 30px;">
+                <div class="col-lg-1"><img src="img/COWDC_logo_black.jpg" style="height: 100px; width: auto;"></div>
+                <div class="col-lg-6" style="padding-top: 20px"><h1 class="text-left" style="font-family: Gabrielle, Futural; font-size: 50px;">Mapping the City Of Words...</h1></div>
+                <div class="col-lg-2 col-lg-offset-3" style="padding-top: 40px; padding-left: 50px">
+                    <a href="http://cityofwordsdc.tumblr.com/"><div class="btn btn-default">Blog</div></a>
+                    <a href="http://cityofwordsdc.tumblr.com/post/102702801281/about"><div class="btn btn-default">About</div></a>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-md-3 scroll-box">
-                    <div class="row author-box" ng-repeat="author in (authors | orderBy: 'name')">
-                        <div class="col-sm-2">
-                            <div ng-style="{'background-color':(author.selected ? '#EEEEEE' : 'white')}" class="check-box" ng-click="toggle(author)">
-                            </div>
-                        </div> 
-                        <div class="col-sm-10"> {{author.name}} </div>
+                <div class="col-md-3">
+                    <div class="row scroll-box">
+                        <div class="row author-box" ng-repeat="author in (authors | orderBy: 'name')">
+                            <div class="col-sm-2">
+                                <div ng-style="{'background-color':(author.selected ? '#EEEEEE' : 'white')}" class="check-box" ng-click="toggle(author)">
+                                </div>
+                            </div> 
+                            <div class="col-sm-10"> {{author.name}} </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center" style="padding-top: 10px">
+                            <span class="text-btn" ng-click="selectAll(true)">Show All Quotes</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                                <span class="text-btn" ng-click="selectAll(false)">Hide All Quotes</span>
+                        </div>
                     </div>
                 </div>
                 
-                
-                <div class="col-md-8" style="height: 500px">
+                <div class="col-md-9" style="height: 610px">
                     <div id="map"></div>
                 </div>
                 
             </div>
-            <div class="row">
-                <div class="col-md-3 text-center">
-                    <span class="text-btn" ng-click="selectAll(true)">Show All Quotes</span>
+            
+            <div class="row" style="margin-right: auto; margin-left: auto; width: 40px; padding-top: 10px;">
+                <img src="img/arrow_continue.png" style="width: 100%; height: auto; background-color: #EEEEEE;" class="img-responsive">
+            </div>
+        </div>
+        <div class="container-fluid" style="background-color: #EEEEEE; padding-bottom: 50px;"><div class="container">
+            
+            <div class="row" style="padding-top: 60px; background-color: #EEEEEE">
+                <div class="col-lg-6">
+                    <iframe style="width: 100%; height: 400px;" src="http://www.youtube.com/embed/n0rBhHNn05U" frameborder="0" allowfullscreen=""></iframe>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <h2 class="text-center">We're mapping quotes across DC, investigating the meaning behing the words, and bringing history to life. Join us!</h2>
+                    </div>
+                    <div class="row" style="padding: 15px 0"><div class="col-md-12">
+                        <a href="https://docs.google.com/forms/d/1l22C-018xcGA4eVs_rxWEaBJw9NjzjKqFxCj-f76Ej4/viewform?usp=send_form">
+                            <div class="btn btn-default" style="width: 100%;">Add quotes to the map</div>
+                        </a>
+                    </div></div>
+                    <div class="row" style="padding: 10px 0"><div class="col-md-12">
+                        <a href="http://cityofwordsdc.tumblr.com/post/102702801281/about">
+                            <div class="btn btn-default" style="width: 100%;">Learn more about the project</div>
+                        </a>
+                    </div></div>
+                    <div class="row" style="padding-top: 40px">
+                        <div class="col-md-6 col-md-offset-3" style="padding-left: 33px"> 
+                            <a href="https://www.facebook.com/pages/CityofWordsDC/187139741357977"><img src="img/facebook.svg" class="social-btn"></img></a>
+                            <a href="https://twitter.com/cityofwordsdc"><img src="img/twitter.svg" class="social-btn"></img></a>
+                            <a href="https://www.flickr.com/photos/63502169@N03/"><img src="img/flickr.svg" class="social-btn"></img></a>
+                            <a href="https://github.com/CityofWordsDC/cityofwordsdc.github.com"><img src="img/GitHub%20circle.svg" class="social-btn"></img></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4 class="text-center">As featured in the <a href="http://www.washingtonpost.com/local/city-of-words-maps-washingtons-quotations/2014/02/25/fdf3c320-9d5c-11e3-9ba6-800d1192d08b_story.html">Washington Post</a></h4>
+                    </div>
                 </div>
             </div>
+        </div></div>
+        
+        <div class="container">
             <div class="row">
-                <div class="col-md-3 text-center">
-                    <span class="text-btn" ng-click="selectAll(false)">Hide All Quotes</span>
-                </div>
+                <div class="col-md-12">
+                    <h5 class="text-center">&#0169; CityofWordsDC. All Rights Reserved. CityofWordsDC is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.</a> <br/>For more information, <a href="http://cityofwordsdc.tumblr.com/post/102702801281/about">contact us.</a></h5>
+                <div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="text-center">Web design by Jeremiah Siochi</h5>
+                <div>
             </div>
         </div>
     
