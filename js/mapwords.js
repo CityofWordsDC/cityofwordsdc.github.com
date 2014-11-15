@@ -1,5 +1,5 @@
 angular.module('app', [])
-.controller('mapController', function($scope, $location) {
+.controller('mapController', function($scope, $location, $anchorScroll) {
 
     L.mapbox.accessToken = 'pk.eyJ1Ijoiam9ucG1hcmlubyIsImEiOiJYXy1mZ0I0In0.ijc-81gmzUcpy4bFIgnKWg';
     var map = L.mapbox.map('map', 'jonpmarino.g9c77lie')
@@ -40,6 +40,11 @@ angular.module('app', [])
     
     $scope.linkTo = function(url) {
         $location.url(url);
+    };
+    
+    $scope.goDown = function() {
+        $location.hash('about');
+        $anchorScroll();
     };
     
     map.featureLayer.on('ready', function() {
