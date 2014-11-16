@@ -12,6 +12,7 @@
         
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet">
         
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
         <script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
@@ -25,24 +26,12 @@
         <![endif]-->
     </head>
     <body ng-controller="mapController">
-        <style>
-            body { margin:0; padding:0; font-family: Futura; }
-            #map { position:absolute; top:0; bottom:0; left: -20px; width:100%; }
-            .author-box { margin: 5px 0; height: 30px; width: 100%; }
-            .check-box { height: 20px; width: 20px; background-color: white; border-color: #DDDDDD; border-style: solid; cursor: pointer}
-            .check-box:hover { background-color: #44CCFF; }
-            .scroll-box { height: 540px; overflow: scroll; }
-            .text-btn { color: #999999; font-size: 20px; cursor: pointer;}
-            .text-btn:hover { color: #222222; }
-            .social-btn { height: 50px; width: auto; padding-left: 10px; padding-bottom: 10px;}
-            .social-btn:hover { }
-        </style>
         
         <div class="container">
             
             <div class="row" style="padding-top: 10px; padding-bottom: 30px;">
                 <div class="col-lg-1"><img src="img/COWDC_logo_black.jpg" style="height: 100px; width: auto;"></div>
-                <div class="col-lg-6" style="padding-top: 20px"><h1 class="text-left" style="font-family: 'Tangerine', cursive; font-size: 50px; font-weight: 700;">Mapping the City Of Words...</h1></div>
+                <div class="col-lg-6" style="padding-top: 20px"><h1 id="header-text" class="text-left">Mapping the City Of Words...</h1></div>
                 <div class="col-lg-2 col-lg-offset-3" style="padding-top: 40px; padding-left: 50px">
                     <a href="http://cityofwordsdc.tumblr.com/"><div class="btn btn-default">Blog</div></a>
                     <a href="http://cityofwordsdc.tumblr.com/post/102702801281/about"><div class="btn btn-default">About</div></a>
@@ -77,13 +66,13 @@
                 
             </div>
             
-            <div class="row" style="margin-right: auto; margin-left: auto; width: 40px; padding-top: 10px;">
-                <img src="img/arrow_continue.png" style="width: 100%; height: auto; background-color: #EEEEEE;" class="img-responsive" ng-click="goDown()">
+            <div id="down-row" class="row">
+                <img id="down-img" src="img/arrow_continue.png" class="img-responsive" ng-click="goDown()">
             </div>
         </div>
-        <div class="container-fluid" style="background-color: #EEEEEE; padding-bottom: 50px;" id="about"><div class="container">
+        <div class="container-fluid" id="about"><div class="container">
             
-            <div class="row" style="padding-top: 60px; background-color: #EEEEEE">
+            <div id="about-row" class="row">
                 <div class="col-lg-6">
                     <iframe style="width: 100%; height: 400px;" src="http://www.youtube.com/embed/n0rBhHNn05U" frameborder="0" allowfullscreen=""></iframe>
                 </div>
